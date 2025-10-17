@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./formulario.css">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formulario">
+        <h1>Formulario de ingreso</h1>
+        <label for="nombre">Ingrese su nombre</label>
+        <input type="text" id="nombre"><br>
+        <label>Género:</label>
+        <input type="radio" name="genero" value="hombre"> Hombre
+        <input type="radio" name="genero" value="mujer"> Mujer <br>
+        <label for="pais">País de nacimiento:</label>
+        <select id="pais">
+            <option value="arg">Argentina</option>
+            <option value="bra">Brasil</option>
+            <option value="usa">EE.UU.</option>
+        </select> <br>
+        <button onclick="saludar()">Enviar</button>
+    </form>
+    <script>
+        function saludar(){
+            let nombre = document.getElementById("nombre").value;
+            if (!nombre) {
+                alert('Escribe tu nombre.');
+                return;
+            }
+            let radio = document.querySelector('input[name="genero"]:checked');
+            if (!radio) {
+                alert('Selecciona un género.');
+                return;
+            }
+            if (radio.value === 'hombre') {
+                saludo = 'Bienvenido';
+            } else {
+                saludo = 'Bienvenida';
+            }
+            let pais = document.getElementById("pais").value;
+            let frasePais = "";
+            if (pais === "arg") frasePais = "Gracias por visitarnos";
+            if (pais === "bra") frasePais = "Obrigado por nos visitar";
+            if (pais === "usa") frasePais = "Thanks for visiting us";
+            alert(`${saludo} ${nombre}! ${frasePais}.`);
+
+        }
+    </script>
+</body>
+</html>
