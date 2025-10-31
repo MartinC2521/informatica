@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<cabeza>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contador Decreciente</title>
+</head>
+<cuerpo>
+
+<h1 id="contador">10</h1>
+<button id="boton">Disminuir</button>
+
+<script>
+let ​​contador = 10;
+const contadorElemento = document.getElementById('contador');
+const = document.getElementById('botón');
+botón.addEventListener('click', () => {
+if (contador > 0) {
+nosotros--;
+contadorElemento.textContent = contador;
+} demás {
+alert("El contador ya llegó a 0");
+}
+});
+</script>
+
+</body>
+</html>
