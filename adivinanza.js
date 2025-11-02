@@ -4,6 +4,7 @@ function adivinar(){
     if (nume=numeroAleatorio){
         alert("Haz acertado");
     }else{
-        alert("No lo adivinasrte")
+        alert("No lo adivinasrte, el nùmero era " + numeroAleatorio)
     }
+
 }
