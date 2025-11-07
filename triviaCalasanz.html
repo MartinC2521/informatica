@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><!-- ESTILOS PARA EL MODAL-->
+    <style>
+    .modal {
+     display: none; /* oculto hasta abrir */
+     position: fixed;
+     left: 0; top: 0;
+     width: 100%; height: 100%;
+     background-color: rgba(0,0,0,0.5);
+     z-index: 1000;
+    }
+    .modal-contenido {
+     background: white;
+     margin: 5% auto;
+     padding: 20px;
+     border-radius: 10px;
+     max-width: 600px;
+     max-height: 80vh;
+     overflow-y: auto;
+    }
+    .cerrar { float: right; cursor: pointer; font-size: 24px; }
+    .correcta { color: green; }
+.incorrecta { color: red; }
+#resultado { margin-top: 1em; } 
+
+    </style>
+</head>
+<body>
+    <section id="jugar-trivia">
+        <h2>¿Te animas a poner a prueba tus conocimientos?</h2>
+        <button id="abrirTrivia">Comenzar Trivia</button>
+    </section>
+        <!-- MODAL -->
+        <div id="modalTrivia" class="modal">
+         <div class="modal-contenido">
+         <span class="cerrar">&times;</span>
+         <!-- Aquí irá el formulario y resultados -->
+         <h2>Trivia sobre San José de Calasanz</h2>
+        <form id="formTrivia">
+        <p><strong>1.</strong> ¿Dónde nació San José de Calasanz?</p>
+        <label><input type="radio" name="p1" value="Madrid"> Madrid</label><br>
+        <label><input type="radio" name="p1" value="Peralta de la Sal"> Peralta de la Sal</label><br>
+        <label><input type="radio" name="p1" value="Roma"> Roma</label><br><br>
+        <p><strong>2.</strong> ¿En que año nació?</p>
+        <label><input type="radio" name="p2" value="1556"> 1556</label><br>
+        <label><input type="radio" name="p2" value="1656"> 1656</label><br>
+        <label><input type="radio" name="p2" value="1756"> 1756</label><br><br> 
+        <p><strong>3.</strong> ¿Dónde fundó la primer escuela gratuita?</p>
+        <label><input type="radio" name="p3" value="Zaragoza"> Zaragoza</label><br>
+        <label><input type="radio" name="p3" value="Roma"> Roma</label><br>
+        <label><input type="radio" name="p3" value="Barcelona"> Barcelona</label><br><br> 
+        <p><strong>4.</strong> ¿Qué lema representa su misión educativa?</p>
+        <label><input type="radio" name="p4" value="Fe y razón"> Fe y razón</label><br>
+        <label><input type="radio" name="p4" value=" Justicia y amor "> Justicia y amor</label><br>
+        <label><input type="radio" name="p4" value="Piedad y letras"> Piedad y letras</label><br><br> 
+        <p><strong>5.</strong> ¿Qué día se celebra su festividad?</p>
+        <label><input type="radio" name="p5" value="25 de agosto"> 25 de agosto</label><br>
+        <label><input type="radio" name="p5" value="12 de octubre"> 12 de octubre</label><br>
+        <label><input type="radio" name="p5" value="15 de mayo"> 15 de mayo</label><br><br> 
+        <button type="submit">Enviar respuestas</button>
+</form>
+<div id="resultado"></div>
+         </div>
+        </div> 
+        <!-- SCRIPT básico para abrir/cerrar el MODAL-->
+    <script>
+        const modal = document.getElementById("modalTrivia");
+        const btnAbrir = document.getElementById("abrirTrivia");
+        const btnCerrar = document.querySelector(".cerrar");
+        btnAbrir.onclick = () => { modal.style.display = "block"; };
+        btnCerrar.onclick = () => { modal.style.display = "none"; };
+        window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+        document.getElementById("formTrivia").addEventListener("submit", function(e) {
+        e.preventDefault();
+        // Variable para puntaje
+        let puntaje = 0;
+        let salida = "";
+        // Capturamos la respuesta de la PREGUNTA 1
+        let r1 = document.querySelector('input[name="p1"]:checked');
+        // Validamos
+            if (r1) {
+                if (r1.value === "Peralta de la Sal") {
+                    puntaje++;
+                    salida += "<p class='correcta'>1.Correcta</p>";
+                } else {
+                    salida += "<p class='incorrecta'>1.Incorrecta. Correcta: Peralta de la Sal</p>";
+                }
+            } else {
+                salida += "<p class='incorrecta'>1.No respondida. Correcta: Peralta de la Sal</p>";
+            }
+            let r2 = document.querySelector('input[name="p2"]:checked');
+            // Validamos
+            if (r2) {
+                if (r2.value === "1556") {
+                    puntaje++;
+                    salida += "<p class='correcta'>2.Correcta</p>";
+                } else {
+                    salida += "<p class='incorrecta'>2.Incorrecta. Correcta: 1556</p>";
+                }
+            } else {
+                salida += "<p class='incorrecta'>2.No respondida. Correcta: 1556</p>";
+            }
+            let r3 = document.querySelector('input[name="p3"]:checked');
+            // Validamos
+            if (r3) {
+                if (r3.value === "Roma") {
+                    puntaje++;
+                    salida += "<p class='correcta'>3.Correcta</p>";
+                } else {
+                    salida += "<p class='incorrecta'>3.Incorrecta. Correcta: Roma</p>";
+                }
+            } else {
+                salida += "<p class='incorrecta'>3.No respondida. Correcta: Roma</p>";
+            }
+            let r4 = document.querySelector('input[name="p4"]:checked');
+            // Validamos
+            if (r4) {
+                if (r2.value === "Piedad y letras") {
+                    puntaje++;
+                    salida += "<p class='correcta'>4.Correcta</p>";
+                } else {
+                    salida += "<p class='incorrecta'>4.Incorrecta. Correcta: Piedad y letras</p>";
+                }
+            } else {
+                salida += "<p class='incorrecta'>4.No respondida. Correcta: Piedad y letras</p>";
+            }
+            let r5 = document.querySelector('input[name="p5"]:checked');
+            // Validamos
+            if (r5) {
+                if (r5.value === "Piedad y letras") {
+                    puntaje++;
+                    salida += "<p class='correcta'>5.Correcta</p>";
+                } else {
+                    salida += "<p class='incorrecta'>5.Incorrecta. Correcta: 25 de agosto</p>";
+                }
+            } else {
+                salida += "<p class='incorrecta'>5.No respondida. Correcta: 25 de agosto</p>";
+            }               
+        // Mostramos el resultado dentro del modal, debajo del formulario
+        salida += `<h4>Puntaje final: ${puntaje} de 5</h4>`;
+        if (puntaje === 5) salida += "¡Excelente trabajo!";
+            else if (puntaje >= 3) salida += "Muy bien, conoces bastante sobre Calasanz.";
+            else salida += "Puedes repasar la página para aprender más.";
+        document.getElementById("resultado").innerHTML = salida;
+        }); 
+    </script>
+</body>
+</html>
