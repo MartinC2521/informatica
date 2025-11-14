@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiestas de Fin de Año</title>
+</head>
+<body>
+  <h1>Fiestas de Fin de Año</h1>
+  <p>Haz clic en el botón para ingresar tu nombre.</p>
+
+  <button onclick="ingresarNombre()">Ingresar Nombre</button>
+
+  <script>
+    function ingresarNombre() {
+      let nombre = prompt("Ingresa tu nombre:");
+      let respuesta = prompt("¿Asistirás a las fiestas de fin de año? (sí/no)");
+
+      if (respuesta.toLowerCase() === "sí" || respuesta.toLowerCase() === "si") {
+        alert(nombre + ", ¡qué bueno que asistirás a las fiestas de fin de año!");
+      } else {
+        alert(nombre + ", una lástima que no puedas asistir.");
+      }
+    }
+  </script>
+</body>
+</html>

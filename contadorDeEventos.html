@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador de Eventos</title>
+</head>
+<body>
+  <h1>Calculador de Días para un Evento</h1>
+
+  <form>
+    Nombre del evento: <input type="text" id="evento"><br><br>
+    Fecha del evento: <input type="date" id="fecha"><br><br>
+    <button type="button" onclick="calcular()">Calcular</button>
+  </form>
+
+  <p id="resultado"></p>
+
+  <script>
+    function calcular() {
+      let nombre = document.getElementById("evento").value;
+      let fechaEvento = new Date(document.getElementById("fecha").value);
+      let hoy = new Date();
+
+      // Calcular la diferencia en milisegundos
+      let diferencia = fechaEvento - hoy;
+      // Convertir a días
+      let dias = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+
+      let mensaje = "";
+
+      if (dias > 0) {
+        mensaje = "Faltan " + dias + " días para " + nombre + ".";
+      } else {
+        mensaje = "El evento " + nombre + " ya ocurrió. Gracias por ver el video.";
+      }
+
+      document.getElementById("resultado").textContent = mensaje;
+    }
+  </script>
+</body>
+</html>
